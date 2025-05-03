@@ -9,4 +9,4 @@ coverage run -m pytest tests/
 coverage report -m
 
 # URL Google Sheets (jika digunakan):
-# https://docs.google.com/spreadsheets/d/[YOUR_SPREADSHEET_ID]
+# https://docs.google.com/spreadsheets/d/[drop link]
