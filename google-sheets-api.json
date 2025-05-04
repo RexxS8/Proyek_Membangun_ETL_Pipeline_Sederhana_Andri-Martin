@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "silent-robot-458810-q3",
+  "private_key_id": "250d921d6b056312d940a98ebf8496d963715ef7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDhfQW0biXQWJfy\n69403jPIB5G3nOlYC3JEObOya/DSED3DSblTTEHspsCeizllcRH9Dt5W6orNzh72\na27LeH4gPZexb+agMI92kuRHMVjmoMMv+GOKRsyGKiRSu1i7B5igkHyGfzepetoz\nl8hpaqkk0LEDsAIt/SzocUylBURsI9EsrkVF8+HcQlbdX4IxJSZ9yC+b3ieZjUHi\n7bsh1A1yeUaGr0eoYZMAWbM1hyyPHifcU421E4MMRQIWDvD31IcrX9j8YcribD+g\nQSnrhdCIYw0NN9JfvnrLxSku+r+RAtMNIuNLi6YINu9K/slkAte7EUHWCI807JXe\nyB48w8hvAgMBAAECggEAVLjU2+ZG7vFapjtZUiPq8M1nQsYCJsKmPFwx2GgWI9dW\nXXnl2BZe7rv4w5ksB6FkUOC1SZL2dD1uBMh46JptSU/bHyAcVzPns3Wdr+IqtPzS\nWcPKIrpXPlG3NB6QSDWiczHWl/JUx6kRMzFka7dXti1zVR9cskreBLgNRDOmcbqO\nsY4Yx1HeTtz1uI7pOYpbclYGn4j28/xOIR4vTp/ptdQ6VsMtkFWwhPoH+SOFTgRR\nSFfk3CJB73f97kVVQAGiAEjr92dvyd1LcyQk2TIw5fz/NrrQ1qr6X1hey62jN6Ed\nKCDION/kEQ1ztLvcnriXEhq4mz9ZkHY7bHvm9s85gQKBgQD7b8A80nv6tcwvRHfR\niqAq7rxztTua1Sp6S9IUqgkC++RaZ5FaV/w5uP2xJrXSBNq98TxRzb39csQYqZgB\n5LOWC8wPxA0LUDGsNGPftq0CmnXPgfU5T81M3r0866d018sSZKxrrYkBzNT624+3\n73uIujn6Mt5OmPsV/mVDZ7I4hQKBgQDllLVej02X9sVJJBW/iIpriooPg1VMwdta\n/vGPtliC1cArYi2vO2crbIKhi/Qioh3T6aokkuy/Isx1QIQ0YjxeDqnIN/aGK3W9\nAJQENEZRlklW9J3XQjiHeg9td+0rZYC6Exv5Q2+gkAjpmbBtKnPJUdSsYODYey0X\nt+ORR/JJYwKBgCagYFP3sfwt+ZQ5XH7gYQK3clQEP4flv4TSKQ/rnz7KG6aXyoiq\ng6EKfk68t6nv/Pq5GJ8okEtjWiS/yQ5haAVhApRZdfeK9laSJdW0ZpfDyt16BYYs\ncEmi3keBnFQi4puMw8A3BJk2MnHnUQjczYmPsmBxeB1y+v/B+SSFxadRAoGBAI+m\niAHd6vBOMU29rXoGBo6Zxh9EzyfTGN0MLrv8nc9nzfGXYfyGT9zE7cwFVUIibEV/\nrL1rzYUfUg1/y/k3CozT4fpswe1b3jTf2r3ys5kzTzqAnw7k2ZgzkNmvM5B216AW\neudyAbPWzCzWxKTZ7k8my8r8Z1QtZp6zqknqWbj/AoGBALk5CZA8WTDhvMcMA2IB\nT5QZoAU0v9H5L15AJ22I9b85LuSxuO+NasjZHrbGRWmmvY6YCE64fTs6G4zfR5C8\npjN5zIVkDnuyx7oyPwMj65cNvY/OJ+ExmDNH8uAIv9/sigdQosA51dN9UVNbJXQU\nNQDTrKa5XLXVI6a6MHjFkRpv\n-----END PRIVATE KEY-----\n",
+  "client_email": "mc331d5y2088-student-devacadem@silent-robot-458810-q3.iam.gserviceaccount.com",
+  "client_id": "117774014367831049990",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mc331d5y2088-student-devacadem%40silent-robot-458810-q3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

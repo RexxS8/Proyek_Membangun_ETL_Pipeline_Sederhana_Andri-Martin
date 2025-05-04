@@ -69,11 +69,11 @@ def main():
         
         # Optional: Save to Google Sheets
         try:
-            # spreadsheet_id = "your-spreadsheet-id"
-            # credentials_file = "google-sheets-api.json"
-            # if not save_to_google_sheets(cleaned_df, spreadsheet_id, credentials_file):
-            #     logger.error("Failed to save to Google Sheets")
-            #     return 1
+            spreadsheet_id = "1Exleh2grb0y5WwKs9lNcKo4ICigrauYKKTScCwYf0aA"
+            credentials_file = "google-sheets-api.json"
+            if not save_to_google_sheets(cleaned_df, spreadsheet_id, credentials_file):
+                logger.error("Failed to save to Google Sheets")
+                return 1
             pass
         except Exception as e:
             logger.error(f"Error saving to Google Sheets: {e}")

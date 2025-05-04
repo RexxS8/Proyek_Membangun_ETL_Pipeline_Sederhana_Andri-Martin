@@ -3,6 +3,9 @@ from sqlalchemy import create_engine
 import os
 import logging
 from typing import Optional
+from googleapiclient.errors import HttpError
+from google.oauth2.service_account import Credentials
+from googleapiclient.discovery import build
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -66,54 +69,47 @@ def save_to_postgresql(df: pd.DataFrame, db_url: str, table_name: str = 'product
         logger.error(f"Unexpected error saving to PostgreSQL: {e}")
         return False
 
-def save_to_google_sheets(df: pd.DataFrame, spreadsheet_id: str, credentials_file: str) -> bool:
-    """Save DataFrame to Google Sheets with comprehensive error handling."""
+def save_to_google_sheets(df: pd.DataFrame, spreadsheet_id: str, credentials_file: str = 'google-sheets-api.json') -> bool:
+    """Save DataFrame to Google Sheets."""
     try:
-        if df.empty:
-            logger.warning("Empty DataFrame provided for Google Sheets export")
+        # Validate input
+        if not os.path.exists(credentials_file):
+            logger.error(f"Credentials file not found: {credentials_file}")
             return False
-            
-        try:
-            from google.oauth2.service_account import Credentials
-            from googleapiclient.discovery import build
-            from googleapiclient.errors import HttpError
-            
-            # Validate credentials file
-            if not os.path.exists(credentials_file):
-                logger.error(f"Credentials file not found: {credentials_file}")
-                return False
-                
-            scopes = ['https://www.googleapis.com/auth/spreadsheets']
-            creds = Credentials.from_service_account_file(credentials_file, scopes=scopes)
-            
-            service = build('sheets', 'v4', credentials=creds)
-            
-            # Convert DataFrame to list of lists
-            values = [df.columns.tolist()] + df.values.tolist()
-            
-            body = {'values': values}
-            result = service.spreadsheets().values().update(
-                spreadsheetId=spreadsheet_id,
-                range='A1',
-                valueInputOption='RAW',
-                body=body
-            ).execute()
-            
-            logger.info(
-                f"Successfully updated Google Sheet. {result.get('updatedCells')} cells updated."
-            )
-            return True
-            
-        except HttpError as http_err:
-            logger.error(f"Google API HTTP error: {http_err}")
-            return False
-        except Exception as api_err:
-            logger.error(f"Google API error: {api_err}")
-            return False
-            
-    except ImportError:
-        logger.error("Required Google API packages not installed")
+
+        # Authenticate with Google Sheets API
+        scopes = ['https://www.googleapis.com/auth/spreadsheets']
+        creds = Credentials.from_service_account_file(
+            credentials_file, 
+            scopes=scopes
+        )
+        service = build('sheets', 'v4', credentials=creds)
+        sheet = service.spreadsheets()
+
+        # Convert dataframe to list of lists
+        values = [df.columns.tolist()]
+        values.extend(df.values.tolist())
+
+        # Clear existing data first
+        sheet.values().clear(
+            spreadsheetId=spreadsheet_id,
+            range='A:Z'  # Clear all columns
+        ).execute()
+
+        # Update spreadsheet
+        result = sheet.values().update(
+            spreadsheetId=spreadsheet_id,
+            range='A1',
+            valueInputOption='USER_ENTERED',
+            body={'values': values}
+        ).execute()
+
+        logger.info(f"Data saved to Google Sheets. Updated cells: {result.get('updatedCells')}")
+        return True
+
+    except HttpError as e:
+        logger.error(f"Google Sheets API error: {e}")
         return False
     except Exception as e:
-        logger.error(f"Unexpected error saving to Google Sheets: {e}")
+        logger.error(f"Error saving to Google Sheets: {e}")
         return False
