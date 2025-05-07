@@ -6,34 +6,28 @@ from typing import Optional
 from googleapiclient.errors import HttpError
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+from pathlib import Path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def save_to_csv(df: pd.DataFrame, filename: str = 'products.csv') -> bool:
-    """Save DataFrame to CSV file in project root directory."""
+def save_to_csv(df: pd.DataFrame, filepath: str | Path) -> bool:
+    """Save DataFrame to CSV file with better error handling and logging."""
     try:
         if df.empty:
             logger.warning("Empty DataFrame provided for CSV export")
             return False
-            
-        if not filename.endswith('.csv'):
-            filename += '.csv'
-            
-        try:
-            # Save directly to project root
-            df.to_csv(filename, index=False, encoding='utf-8')
-            logger.info(f"Successfully saved {len(df)} rows to {os.path.abspath(filename)}")
-            return True
-            
-        except PermissionError:
-            logger.error(f"Permission denied when writing to {filename}")
-            return False
-        except OSError as os_err:
-            logger.error(f"OS error when writing to {filename}: {os_err}")
-            return False
-            
+
+        path = Path(filepath)
+        if path.suffix != '.csv':
+            path = path.with_suffix('.csv')
+        
+        path.parent.mkdir(parents=True, exist_ok=True)  # Pastikan direktori ada
+        df.to_csv(path, index=False, encoding='utf-8')
+        logger.info(f"Successfully saved {len(df)} rows to {path.resolve()}")
+        return True
+
     except Exception as e:
         logger.error(f"Unexpected error saving to CSV: {e}")
         return False

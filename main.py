@@ -57,12 +57,12 @@ def main():
             logger.error("Failed to save to CSV")
             return 1
         
-        # Optional: Save to PostgreSQL
+        # Save to PostgreSQL
         try:
-            # db_url = "postgresql://username:password@localhost:5432/database_name"
-            # if not save_to_postgresql(cleaned_df, db_url):
-            #     logger.error("Failed to save to PostgreSQL")
-            #     return 1
+            db_url = "postgresql://developer:48694404@localhost:5432/productsdb"
+            if not save_to_postgresql(cleaned_df, db_url):
+                logger.error("Failed to save to PostgreSQL")
+                return 1
             pass
         except Exception as e:
             logger.error(f"Error saving to PostgreSQL: {e}")
